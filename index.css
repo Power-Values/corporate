@@ -5,6 +5,23 @@
         "Source Han Sans CN", sans-serif;
 }
 
+/* Full-viewport baseline and safe-area handling */
+html, body {
+    height: 100%;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    background: #fffbfd;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+}
+
 /* Welcome Overlay Styles */
 .welcome-overlay {
     position: fixed;
@@ -14,6 +31,7 @@
     height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    min-height: 100dvh;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
@@ -23,6 +41,7 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 @keyframes fadeIn {
@@ -65,6 +84,7 @@
     animation: floatUp 0.8s ease-out;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    min-height: 100dvh;
 }
 
 .welcome-text {
@@ -431,7 +451,6 @@
         position: relative;
         width: 180px;
         height: auto;
-        min-height: auto;
         top: auto;
         left: auto;
         transform: none;
@@ -457,7 +476,6 @@
         position: relative;
         width: 180px;
         height: auto;
-        min-height: auto;
         top: auto;
         left: auto;
         transform: none;
@@ -657,7 +675,9 @@ button {
     font-size: 0px;
     background: #fffbfd;
     overflow: hidden;
+    min-height: 100dvh;
 }
+
 .text {
     display: block;
     position: relative;
@@ -672,6 +692,7 @@ button {
     white-space: nowrap;
     z-index: 3;
 }
+
 .group {
     position: relative;
     width: 1280px;
@@ -679,11 +700,12 @@ button {
     margin: 3px 0 0 0;
     z-index: 17;
 }
+
 /* Top-left Dropdown Menu (Hero) */
 .menu-dropdown {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: max(env(safe-area-inset-top), 0px);
+    right: max(env(safe-area-inset-right), 0px);
     z-index: 100;
 }
 
