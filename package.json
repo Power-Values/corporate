@@ -1,0 +1,9 @@
+{
+  "name": "power-values",
+  "version": "1.0.0",
+  "description": "Power Values™ Corporate Leadership Training",
+  "scripts": {
+    "build": "echo 'Building static site'"
+  },
+  "license": "MIT"
+}

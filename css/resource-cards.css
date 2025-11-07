@@ -1,0 +1,154 @@
+/* Resource Cards Hover Effect */
+.tool-card {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Text container with fixed height */
+.card-text-container {
+    position: relative;
+    min-height: 100px;
+    margin: 12px 0;
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Base styles for both text elements */
+.card-text-default,
+.card-text-hover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    margin: 0;
+    text-align: center;
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Default text - visible initially */
+.card-text-default {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+}
+
+/* Hover text - hidden initially */
+.card-text-hover {
+    position: absolute;
+    top: 50%;
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    padding: 0 15px;
+}
+
+/* Hover states */
+.tool-card:hover .card-text-default {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+}
+
+.tool-card:hover .card-text-hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%);
+}
+
+/* Card hover effect */
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure consistent button styling */
+.box, .box-3, .section-2, .section-3 {
+    margin-top: auto;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.box:hover, .box-3:hover, .section-2:hover, .section-3:hover {
+    background-color: #1a252f;
+}
+
+/* Card header styles */
+.tool-card .text-8,
+.tool-card .text-c,
+.tool-card .text-10,
+.tool-card .text-14 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Card title styles */
+.tool-card .text-9,
+.tool-card .text-d,
+.tool-card .text-11,
+.tool-card .text-15 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a252f;
+    margin: 8px 0 12px;
+    line-height: 1.3;
+}
+
+/* Image styles */
+.tool-card img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 15px;
+    display: block;
+    border-radius: 4px;
+}
+}
+
+/* Ensure images maintain position */
+.tool-card img {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Adjust text container for better spacing */
+.card-text-container p {
+    margin: 0;
+    padding: 10px 0;
+}
