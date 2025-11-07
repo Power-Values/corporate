@@ -1,5 +1,5 @@
 /**
- * Unit tests for index1.html functions
+ * Unit tests for index.html functions
  * 
  * Setup: Install Jest with `npm install --save-dev jest jsdom`
  * Run tests with: `npm test`
@@ -13,7 +13,7 @@ describe('handlePersonalDevelopment', () => {
   });
 
   test('redirects to https://powervalues.xyz/personal', () => {
-    // Define the function (extracted from index1.html)
+    // Define the function (extracted from index.html)
     function handlePersonalDevelopment() {
       window.location.href = 'https://powervalues.xyz/personal';
     }
