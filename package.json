@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "Power Values™ Corporate Leadership Training",
   "scripts": {
-    "build": "echo 'Building static site'"
+    "build": "echo 'Building static site'",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   },
   "license": "MIT"
 }
