@@ -5,23 +5,6 @@
         "Source Han Sans CN", sans-serif;
 }
 
-/* Full-viewport baseline and safe-area handling */
-html, body {
-    height: 100%;
-    min-height: 100dvh;
-    margin: 0;
-    padding: 0;
-    background: #fffbfd;
-    -webkit-text-size-adjust: 100%;
-}
-
-body {
-    padding-top: env(safe-area-inset-top);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-}
-
 /* Welcome Overlay Styles */
 .welcome-overlay {
     position: fixed;
@@ -31,7 +14,6 @@ body {
     height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    min-height: 100dvh;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
@@ -41,7 +23,6 @@ body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 @keyframes fadeIn {
@@ -84,7 +65,6 @@ body {
     animation: floatUp 0.8s ease-out;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
-    min-height: 100dvh;
 }
 
 .welcome-text {
@@ -165,40 +145,66 @@ body {
 }
 
 .welcome-text-2 {
-    display: block;
-    position: static;
-    width: 80%;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 355px;
+    height: 116px;
+    top: 156px;
+    left: 36px;
     color: #000000;
     font-family: Lato, var(--default-font-family);
     font-size: 48px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 57.6px;
     text-align: center;
-    white-space: normal;
+    text-overflow: initial;
+    z-index: 2;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    pointer-events: auto;
     user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-.welcome-img:hover .welcome-text-2 {
+.welcome-img:hover ~ .welcome-text-2,
+.welcome-text-2:hover {
     color: #4a90e2;
 }
 
 .welcome-text-3 {
-    display: block;
-    position: static;
-    width: 80%;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 291px;
+    height: 116px;
+    top: 156px;
+    left: 595px;
     color: #000000;
     font-family: Lato, var(--default-font-family);
     font-size: 48px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 57.6px;
     text-align: center;
-    white-space: normal;
+    text-overflow: initial;
+    z-index: 4;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    pointer-events: auto;
     user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-.welcome-img-2:hover .welcome-text-3 {
+.welcome-img-2:hover ~ .welcome-text-3,
+.welcome-text-3:hover {
     color: #4a90e2;
 }
 
@@ -244,10 +250,14 @@ body {
         line-height: 1.2;
     }
     
-    .welcome-text-2,
+    .welcome-text-2 {
+        width: 40%;
+        left: 5%;
+    }
+    
     .welcome-text-3 {
-        width: 80%;
-        left: auto;
+        width: 40%;
+        left: 55%;
     }
 }
 
@@ -288,7 +298,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 24px;
+        gap: 0;
         position: relative;
     }
     
@@ -306,37 +316,45 @@ body {
     }
     
     .welcome-img {
-        margin: 0;
+        margin-bottom: -140px;
         z-index: 1;
     }
     
     .welcome-text-2 {
-        position: static;
-        width: auto;
+        position: relative;
+        width: 240px;
         height: auto;
+        top: auto;
+        left: auto;
+        transform: none;
         font-size: 24px;
         line-height: 1.3;
         padding: 10px;
         box-sizing: border-box;
         z-index: 2;
-        margin: 0;
+        margin-bottom: -140px;
+        pointer-events: auto;
     }
     
     .welcome-img-2 {
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: -140px;
         z-index: 3;
     }
     
     .welcome-text-3 {
-        position: static;
-        width: auto;
+        position: relative;
+        width: 240px;
         height: auto;
+        top: auto;
+        left: auto;
+        transform: none;
         font-size: 24px;
         line-height: 1.3;
         padding: 10px;
         box-sizing: border-box;
         z-index: 4;
-        margin: 0;
+        pointer-events: auto;
     }
     
     /* Improve touch targets */
@@ -385,7 +403,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
+        gap: 0;
         position: relative;
     }
     
@@ -404,12 +422,19 @@ body {
         flex-shrink: 0;
     }
     
-    .welcome-img { z-index: 1; }
+    .welcome-img {
+        margin-bottom: -110px;
+        z-index: 1;
+    }
     
     .welcome-text-2 {
-        position: static;
-        width: auto;
+        position: relative;
+        width: 180px;
         height: auto;
+        min-height: auto;
+        top: auto;
+        left: auto;
+        transform: none;
         font-size: 18px;
         line-height: 1.2;
         padding: 8px 5px;
@@ -418,15 +443,24 @@ body {
         word-wrap: break-word;
         overflow-wrap: break-word;
         z-index: 2;
-        margin: 0;
+        margin-bottom: -110px;
+        pointer-events: auto;
     }
     
-    .welcome-img-2 { z-index: 3; }
+    .welcome-img-2 {
+        margin-top: 0;
+        margin-bottom: -110px;
+        z-index: 3;
+    }
     
     .welcome-text-3 {
-        position: static;
-        width: auto;
+        position: relative;
+        width: 180px;
         height: auto;
+        min-height: auto;
+        top: auto;
+        left: auto;
+        transform: none;
         font-size: 18px;
         line-height: 1.2;
         padding: 8px 5px;
@@ -435,8 +469,9 @@ body {
         word-wrap: break-word;
         overflow-wrap: break-word;
         z-index: 4;
-        margin: 0;
+        pointer-events: auto;
     }
+    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
@@ -458,7 +493,9 @@ body {
         line-height: 1.1;
     }
     
-    .welcome-box { gap: 18px; }
+    .welcome-box {
+        gap: 18px;
+    }
     
     .welcome-img,
     .welcome-img-2 {
@@ -470,16 +507,38 @@ body {
         max-height: 200px;
     }
     
-    .welcome-text-2,
-    .welcome-text-3 {
-        position: static;
-        width: auto;
+    /* First ellipse is 200px, so text should be at 100px (50% of 200px) */
+    .welcome-text-2 {
+        position: absolute;
+        width: 160px;
         height: auto;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: 16px;
         line-height: 1.1;
         padding: 6px 4px;
-        z-index: auto;
+        pointer-events: none;
+        z-index: 2;
+        box-sizing: border-box;
     }
+    
+    /* Second ellipse is at 200px + 18px gap = 218px, so text should be at 218px + 100px = 318px */
+    .welcome-text-3 {
+        position: absolute;
+        width: 160px;
+        height: auto;
+        top: 318px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 16px;
+        line-height: 1.1;
+        padding: 6px 4px;
+        pointer-events: none;
+        z-index: 4;
+        box-sizing: border-box;
+    }
+    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
@@ -514,7 +573,10 @@ body {
         padding: 0 5px;
     }
     
-    .welcome-box { gap: 18px; width: 100%; }
+    .welcome-box {
+        gap: 18px;
+        width: 100%;
+    }
     
     .welcome-img,
     .welcome-img-2 {
@@ -526,19 +588,44 @@ body {
         max-height: 210px;
     }
     
-    .welcome-text-2,
-    .welcome-text-3 {
-        position: static;
-        width: auto;
+    /* First ellipse is 210px, so text should be at 105px (50% of 210px) */
+    .welcome-text-2 {
+        position: absolute;
+        width: 170px;
         height: auto;
+        top: 105px;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: 17px;
         line-height: 1.2;
         padding: 7px 4px;
         white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
-        z-index: auto;
+        pointer-events: none;
+        z-index: 2;
+        box-sizing: border-box;
     }
+    
+    /* Second ellipse is at 210px + 18px gap = 228px, so text should be at 228px + 105px = 333px */
+    .welcome-text-3 {
+        position: absolute;
+        width: 170px;
+        height: auto;
+        top: 333px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 17px;
+        line-height: 1.2;
+        padding: 7px 4px;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        pointer-events: none;
+        z-index: 4;
+        box-sizing: border-box;
+    }
+    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
@@ -570,9 +657,7 @@ button {
     font-size: 0px;
     background: #fffbfd;
     overflow: hidden;
-    min-height: 100dvh;
 }
-
 .text {
     display: block;
     position: relative;
@@ -587,7 +672,6 @@ button {
     white-space: nowrap;
     z-index: 3;
 }
-
 .group {
     position: relative;
     width: 1280px;
@@ -595,12 +679,11 @@ button {
     margin: 3px 0 0 0;
     z-index: 17;
 }
-
 /* Top-left Dropdown Menu (Hero) */
 .menu-dropdown {
     position: absolute;
-    top: max(env(safe-area-inset-top), 0px);
-    right: max(env(safe-area-inset-right), 0px);
+    top: 0;
+    right: 0;
     z-index: 100;
 }
 
