@@ -165,66 +165,40 @@ body {
 }
 
 .welcome-text-2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 355px;
-    height: 116px;
-    top: 156px;
-    left: 36px;
+    display: block;
+    position: static;
+    width: 80%;
+    height: auto;
     color: #000000;
     font-family: Lato, var(--default-font-family);
     font-size: 48px;
     font-weight: 900;
-    line-height: 57.6px;
+    line-height: 1.2;
     text-align: center;
-    text-overflow: initial;
-    z-index: 2;
-    overflow: hidden;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    pointer-events: auto;
+    white-space: normal;
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
 }
 
-.welcome-img:hover ~ .welcome-text-2,
-.welcome-text-2:hover {
+.welcome-img:hover .welcome-text-2 {
     color: #4a90e2;
 }
 
 .welcome-text-3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 291px;
-    height: 116px;
-    top: 156px;
-    left: 595px;
+    display: block;
+    position: static;
+    width: 80%;
+    height: auto;
     color: #000000;
     font-family: Lato, var(--default-font-family);
     font-size: 48px;
     font-weight: 900;
-    line-height: 57.6px;
+    line-height: 1.2;
     text-align: center;
-    text-overflow: initial;
-    z-index: 4;
-    overflow: hidden;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    pointer-events: auto;
+    white-space: normal;
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
 }
 
-.welcome-img-2:hover ~ .welcome-text-3,
-.welcome-text-3:hover {
+.welcome-img-2:hover .welcome-text-3 {
     color: #4a90e2;
 }
 
@@ -270,14 +244,10 @@ body {
         line-height: 1.2;
     }
     
-    .welcome-text-2 {
-        width: 40%;
-        left: 5%;
-    }
-    
+    .welcome-text-2,
     .welcome-text-3 {
-        width: 40%;
-        left: 55%;
+        width: 80%;
+        left: auto;
     }
 }
 
@@ -318,7 +288,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0;
+        gap: 24px;
         position: relative;
     }
     
@@ -336,45 +306,37 @@ body {
     }
     
     .welcome-img {
-        margin-bottom: -140px;
+        margin: 0;
         z-index: 1;
     }
     
     .welcome-text-2 {
-        position: relative;
-        width: 240px;
+        position: static;
+        width: auto;
         height: auto;
-        top: auto;
-        left: auto;
-        transform: none;
         font-size: 24px;
         line-height: 1.3;
         padding: 10px;
         box-sizing: border-box;
         z-index: 2;
-        margin-bottom: -140px;
-        pointer-events: auto;
+        margin: 0;
     }
     
     .welcome-img-2 {
-        margin-top: 0;
-        margin-bottom: -140px;
+        margin: 0;
         z-index: 3;
     }
     
     .welcome-text-3 {
-        position: relative;
-        width: 240px;
+        position: static;
+        width: auto;
         height: auto;
-        top: auto;
-        left: auto;
-        transform: none;
         font-size: 24px;
         line-height: 1.3;
         padding: 10px;
         box-sizing: border-box;
         z-index: 4;
-        pointer-events: auto;
+        margin: 0;
     }
     
     /* Improve touch targets */
@@ -423,7 +385,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0;
+        gap: 16px;
         position: relative;
     }
     
@@ -442,18 +404,12 @@ body {
         flex-shrink: 0;
     }
     
-    .welcome-img {
-        margin-bottom: -110px;
-        z-index: 1;
-    }
+    .welcome-img { z-index: 1; }
     
     .welcome-text-2 {
-        position: relative;
-        width: 180px;
+        position: static;
+        width: auto;
         height: auto;
-        top: auto;
-        left: auto;
-        transform: none;
         font-size: 18px;
         line-height: 1.2;
         padding: 8px 5px;
@@ -462,23 +418,15 @@ body {
         word-wrap: break-word;
         overflow-wrap: break-word;
         z-index: 2;
-        margin-bottom: -110px;
-        pointer-events: auto;
+        margin: 0;
     }
     
-    .welcome-img-2 {
-        margin-top: 0;
-        margin-bottom: -110px;
-        z-index: 3;
-    }
+    .welcome-img-2 { z-index: 3; }
     
     .welcome-text-3 {
-        position: relative;
-        width: 180px;
+        position: static;
+        width: auto;
         height: auto;
-        top: auto;
-        left: auto;
-        transform: none;
         font-size: 18px;
         line-height: 1.2;
         padding: 8px 5px;
@@ -487,9 +435,8 @@ body {
         word-wrap: break-word;
         overflow-wrap: break-word;
         z-index: 4;
-        pointer-events: auto;
+        margin: 0;
     }
-    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
@@ -511,9 +458,7 @@ body {
         line-height: 1.1;
     }
     
-    .welcome-box {
-        gap: 18px;
-    }
+    .welcome-box { gap: 18px; }
     
     .welcome-img,
     .welcome-img-2 {
@@ -525,38 +470,16 @@ body {
         max-height: 200px;
     }
     
-    /* First ellipse is 200px, so text should be at 100px (50% of 200px) */
-    .welcome-text-2 {
-        position: absolute;
-        width: 160px;
-        height: auto;
-        top: 100px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 16px;
-        line-height: 1.1;
-        padding: 6px 4px;
-        pointer-events: none;
-        z-index: 2;
-        box-sizing: border-box;
-    }
-    
-    /* Second ellipse is at 200px + 18px gap = 218px, so text should be at 218px + 100px = 318px */
+    .welcome-text-2,
     .welcome-text-3 {
-        position: absolute;
-        width: 160px;
+        position: static;
+        width: auto;
         height: auto;
-        top: 318px;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 16px;
         line-height: 1.1;
         padding: 6px 4px;
-        pointer-events: none;
-        z-index: 4;
-        box-sizing: border-box;
+        z-index: auto;
     }
-    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
@@ -591,10 +514,7 @@ body {
         padding: 0 5px;
     }
     
-    .welcome-box {
-        gap: 18px;
-        width: 100%;
-    }
+    .welcome-box { gap: 18px; width: 100%; }
     
     .welcome-img,
     .welcome-img-2 {
@@ -606,44 +526,19 @@ body {
         max-height: 210px;
     }
     
-    /* First ellipse is 210px, so text should be at 105px (50% of 210px) */
-    .welcome-text-2 {
-        position: absolute;
-        width: 170px;
-        height: auto;
-        top: 105px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 17px;
-        line-height: 1.2;
-        padding: 7px 4px;
-        white-space: normal;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        pointer-events: none;
-        z-index: 2;
-        box-sizing: border-box;
-    }
-    
-    /* Second ellipse is at 210px + 18px gap = 228px, so text should be at 228px + 105px = 333px */
+    .welcome-text-2,
     .welcome-text-3 {
-        position: absolute;
-        width: 170px;
+        position: static;
+        width: auto;
         height: auto;
-        top: 333px;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 17px;
         line-height: 1.2;
         padding: 7px 4px;
         white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
-        pointer-events: none;
-        z-index: 4;
-        box-sizing: border-box;
+        z-index: auto;
     }
-    
     /* Make ellipses fully clickable on mobile */
     .welcome-img,
     .welcome-img-2 {
