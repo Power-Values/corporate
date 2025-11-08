@@ -3714,6 +3714,47 @@ button {
         padding: 10px !important;
         box-sizing: border-box;
     }
+    
+    /* Make FAQ questions visible on mobile */
+    .text-3a, .text-3b, .text-3c, .text-3d, .text-3e, .text-3f, .text-40, .text-41, .text-42, .text-43, .text-44, .text-45 {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 18px !important;
+        line-height: 1.4 !important;
+        width: auto !important;
+        max-width: 100% !important;
+        word-wrap: break-word !important;
+    }
+    
+    .section-d, .box-b, .group-5, .section-e, .section-f, .section-10 {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        cursor: pointer !important;
+        padding: 15px 10px !important;
+        background: rgba(255, 251, 253, 0.95) !important;
+        border-bottom: 1px solid #ddd !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+    
+    /* Move buttons into their respective cards on mobile */
+    .section-6, .wrapper-4, .box-7 {
+        position: static !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+        display: block !important;
+    }
+    
+    .group-3, .wrapper-3, .section-5 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-bottom: 30px !important;
+        padding-bottom: 20px !important;
+        border-bottom: 1px solid #eee !important;
+    }
 }
 
 /* ============================================ */
@@ -4300,6 +4341,18 @@ button {
         width: calc(100% - 30px);
         margin: var(--mobile-spacing-lg) var(--mobile-spacing-sm) 0;
         height: auto;
+    }
+    
+    /* Show section-4 images on mobile */
+    .section-4 .img-7,
+    .section-4 .img-8,
+    .section-4 .img-9,
+    .section-4 .pic-6,
+    .section-4 .img-a {
+        display: block !important;
+        width: 100% !important;
+        height: 2px !important;
+        margin: 0 !important;
         position: relative;
         padding: var(--mobile-spacing-md) 0;
     }
@@ -4411,6 +4464,10 @@ button {
         width: 100%;
         font-size: 17px;
         line-height: 1.6;
+        text-align: center !important;
+        display: block !important;
+        justify-content: center !important;
+        align-items: center !important;
         height: auto;
         text-align: center;
         color: #555;
