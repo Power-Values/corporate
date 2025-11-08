@@ -170,48 +170,38 @@
             </div>
             <div class="section-4">
                 <!-- Audit Item -->
-                <div class="method-item" style="top: 0; left: 0; height: 75px;">
+                <div class="method-item">
                     <span class="method-title">Audit</span>
                     <div class="method-hover-text">
                         <p class="method-description">Uncover alignment gaps and identify the core motivators driving your people, culture, and decisions.</p>
                     </div>
                 </div>
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="img-7">
-                
+
                 <!-- Framework Item -->
-                <div class="method-item" style="top: 75px; left: 0; height: 75px;">
+                <div class="method-item">
                     <span class="method-title">Framework</span>
                     <div class="method-hover-text">
                         <p class="method-description">Apply a values-based methodology rooted in psychology to boost engagement, trust, and performance.</p>
                     </div>
                 </div>
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="img-8">
-                
+
                 <!-- Action Steps Item -->
-                <div class="method-item" style="top: 151px; left: 0; height: 89px;">
+                <div class="method-item">
                     <span class="method-title">Action Steps</span>
                     <div class="method-hover-text">
                         <p class="method-description">Translate clarity into consistent daily behaviors with practical playbooks and leadership exercises.</p>
                     </div>
                 </div>
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="img-9">
-                
+
                 <!-- Results Item -->
-                <div class="method-item" style="top: 240px; left: 0; height: 75px;">
+                <div class="method-item">
                     <span class="method-title">Results</span>
                     <div class="method-hover-text">
                         <p class="method-description">Integrate Power Values into coaching, teams, and culture to sustain alignment across the organization.</p>
                     </div>
                 </div>
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="pic-6">
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="img-a">
-                
-                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="pic-5">
+
+                <img src="assets/images/img_power_values_method.png" alt="Power Values Method" class="method-illustration">
             </div>
             <span class="text-1f">Free Leadership Tools For Clarity & Alignment</span
             ><span class="text-20"
@@ -838,30 +828,57 @@
 					});
 				})();
 
-            // FAQ toggle behavior
+            // FAQ toggle behavior (accessible)
             (function(){
+                function setExpanded(trigger, expanded) {
+                    if (trigger) trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                }
+
+                function setHidden(answer, hidden) {
+                    if (answer) answer.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+                }
+
+                // Initialize aria-hidden on answers
+                document.querySelectorAll('.faq-answer').forEach(function(ans){
+                    var isOpen = ans.classList.contains('open');
+                    setHidden(ans, !isOpen);
+                });
+
                 function toggleFaq(id) {
                     var answer = document.querySelector('.faq-answer[data-faq-answer="' + id + '"]');
-                    if (!answer) return;
+                    var trigger = document.querySelector('[data-faq-id="' + id + '"]');
+                    if (!answer || !trigger) return;
                     var isOpen = answer.classList.contains('open');
                     // Close all others
-                    document.querySelectorAll('.faq-answer.open').forEach(function(el){ el.classList.remove('open'); });
+                    document.querySelectorAll('.faq-answer.open').forEach(function(el){
+                        el.classList.remove('open');
+                        setHidden(el, true);
+                    });
+                    document.querySelectorAll('[data-faq-id]').forEach(function(t){ setExpanded(t, false); });
                     document.querySelectorAll('[data-faq-id] .text-3b, [data-faq-id] .text-3d, [data-faq-id] .text-3f, [data-faq-id] .text-41, [data-faq-id] .text-43, [data-faq-id] .text-45, [data-faq-id] .text-53, [data-faq-id] .text-55, [data-faq-id] .text-57, [data-faq-id] .text-59, [data-faq-id] .text-5b, [data-faq-id] .text-5d').forEach(function(el){ el.textContent = '+'; });
                     // Toggle selected
                     if (!isOpen) {
                         answer.classList.add('open');
-                        var parent = document.querySelector('[data-faq-id="' + id + '"]');
-                        if (parent) {
-                            var plus = parent.querySelector('.text-3b, .text-3d, .text-3f, .text-41, .text-43, .text-45, .text-53, .text-55, .text-57, .text-59, .text-5b, .text-5d');
-                            if (plus) plus.textContent = '−';
-                        }
+                        setHidden(answer, false);
+                        setExpanded(trigger, true);
+                        var plus = trigger.querySelector('.text-3b, .text-3d, .text-3f, .text-41, .text-43, .text-45, .text-53, .text-55, .text-57, .text-59, .text-5b, .text-5d');
+                        if (plus) plus.textContent = '−';
                     }
                 }
 
                 document.querySelectorAll('[data-faq-id]').forEach(function(el){
+                    // Click support
                     el.addEventListener('click', function(){
                         var id = el.getAttribute('data-faq-id');
                         toggleFaq(id);
+                    });
+                    // Keyboard support (Enter/Space)
+                    el.addEventListener('keydown', function(ev){
+                        if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+                            ev.preventDefault();
+                            var id = el.getAttribute('data-faq-id');
+                            toggleFaq(id);
+                        }
                     });
                 });
             })();
