@@ -3626,23 +3626,93 @@ button {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    /* Mobile modal adjustments */
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+    
+    .modal-content {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
     .modal-card {
-        padding: 30px 20px;
+        width: 100% !important;
+        max-width: 100%;
+        height: auto !important;
+        min-height: auto;
+        padding: 25px 20px;
+        box-sizing: border-box;
     }
     
     .modal-card-title {
-        font-size: 20px;
-        line-height: 24px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 15px;
     }
     
     .modal-card-description {
-        font-size: 18px;
-        line-height: 21px;
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-form {
+        gap: 15px;
+    }
+    
+    .form-input {
+        height: 42px;
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    
+    .form-input::placeholder {
+        font-size: 16px;
     }
     
     .form-submit-btn {
         width: 100%;
+        height: 44px;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+    
+    .modal-close {
+        top: -35px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+    }
+    
+    /* FAQ mobile fixes */
+    .faq-answer {
+        width: calc(100% - 20px) !important;
+        max-width: 100%;
+        margin: 10px 10px !important;
+        padding: 15px !important;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .faq-answer p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Ensure FAQ containers fit */
+    .wrapper-b, .box-c, .group-6, .wrapper-f, .wrapper-10, .group-a, .section-d, .box-b, .group-5, .section-e, .section-f, .section-10, .section-11, .section-13, .wrapper-e, .group-9 {
+        width: 100% !important;
+        max-width: 100%;
+        padding: 10px !important;
+        box-sizing: border-box;
     }
 }
 
