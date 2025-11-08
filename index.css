@@ -3697,6 +3697,28 @@ button {
     padding: 0;
 }
 
+/* Mobile padding for method description */
+@media (max-width: 768px) {
+    .method-description {
+        padding: 15px 20px;
+    }
+    
+    /* Override method title white-space for mobile */
+    .method-title {
+        white-space: normal !important;
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    
+    /* Ensure method items fit on mobile */
+    .method-item {
+        width: 100% !important;
+        max-width: 100%;
+        position: relative !important;
+        margin-bottom: 20px;
+    }
+}
+
 .method-item:hover .method-title {
     opacity: 0;
 }
@@ -3897,6 +3919,35 @@ button {
 
 /* Mobile devices - landscape and portrait */
 @media (max-width: 768px) {
+    /* Global text containment rules for mobile */
+    * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Ensure all text elements fit within containers */
+    h1, h2, h3, h4, h5, h6, p, span, div, a, li, td, th {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: normal !important;
+    }
+    
+    /* Prevent text overflow in any container */
+    div, section, article, aside, main {
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure buttons and links wrap text properly */
+    button, a {
+        white-space: normal !important;
+        text-align: center;
+        word-break: break-word;
+    }
+    
     body {
         overflow-x: hidden;
         background: #fffbfd;
