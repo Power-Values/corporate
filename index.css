@@ -683,7 +683,7 @@ button {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1100;
 }
 
 .menu-trigger {
@@ -738,6 +738,7 @@ button {
     right: 0;
     width: 251px;
     background: transparent;
+    z-index: 1000;
 }
 
 .menu-panel.open {
@@ -751,6 +752,7 @@ button {
     border-radius: 25px;
     box-shadow: 0 8px 18px rgba(0,0,0,0.25);
     overflow: hidden;
+    z-index: 1001;
 }
 
 .menu-topbar {
@@ -4399,6 +4401,11 @@ button {
         padding: 0;
     }
     
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
     .main-container {
         width: 100%;
         max-width: 100%;
@@ -4407,6 +4414,18 @@ button {
         margin: 0;
         overflow-x: hidden;
         background: #fffbfd;
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-spacing-lg);
+    }
+
+    .main-container > * {
+        max-width: 100%;
+    }
+
+    .main-container img {
+        max-width: 100%;
+        height: auto;
     }
     
     /* Consistent section spacing */
@@ -4433,7 +4452,7 @@ button {
         position: absolute;
         top: 10px;
         right: 10px;
-        z-index: 100;
+        z-index: 1100;
     }
     
     .menu-trigger {
@@ -4561,6 +4580,87 @@ button {
         box-shadow: var(--mobile-shadow);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    /* Center-align tool card content and ensure media fits */
+    .tool-card .tool-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .tool-card .tool-card-content img {
+        display: block !important;
+        margin: 0 auto 12px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        height: auto !important;
+        border-radius: 12px !important;
+    }
+    .tool-card .tool-card-content span {
+        text-align: center !important;
+        display: block !important;
+    }
+    /* Hide hover overlay on mobile */
+    .tool-card-hover {
+        display: none !important;
+    }
+    /* Remove fixed left offsets on mobile and make spans full-width */
+    .tool-card .tool-card-content span {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    /* Improve Download Now buttons on mobile (first tool cards section) */
+    .tool-card .box,
+    .tool-card .box-3,
+    .tool-card .section-2,
+    .tool-card .section-3 {
+        width: 100% !important;
+        max-width: 280px !important;
+        height: 48px !important;
+        margin: 12px auto 0 !important;
+        padding: 0 16px !important;
+        background: linear-gradient(135deg, #FFE887 0%, #FED605 100%) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.12) !important;
+        border: 1px solid rgba(0,0,0,0.06) !important;
+    }
+    .tool-card .text-b,
+    .tool-card .text-f,
+    .tool-card .text-13,
+    .tool-card .text-17 {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.2px !important;
+        color: #000 !important;
+        text-transform: none !important;
+    }
+    /* Improve CTA buttons (Take Free Quiz, Start Now, Listen Now) */
+    .section-7, .wrapper-5, .section-8 {
+        width: 100% !important;
+        max-width: 280px !important;
+        height: 48px !important;
+        margin: 12px auto 0 !important;
+        background: linear-gradient(135deg, #E5F2FF 0%, #CDE9FF 100%) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.12) !important;
+        border: 1px solid rgba(0,0,0,0.06) !important;
+    }
+    .text-27, .text-28, .text-29 {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.2px !important;
+        color: #000 !important;
+        text-decoration: none !important;
+    }
     
     .wrapper-2:active, .box-2:active, .group-2:active, .box-4:active {
         transform: translateY(2px);
@@ -4569,21 +4669,23 @@ button {
     
     /* Power Values Method section - Consistent heading style */
     .text-18 {
+        display: block;
         width: calc(100% - 30px);
-        margin: var(--mobile-spacing-xl) var(--mobile-spacing-sm) 0;
-        font-size: 36px;
+        margin: var(--mobile-spacing-lg) var(--mobile-spacing-sm) var(--mobile-spacing-md);
+        font-size: 28px;
         line-height: 1.3;
-        height: auto;
-        white-space: normal;
         font-weight: 900;
-        text-align: center;
+        color: #000;
+        text-align: left;
+        white-space: normal;
+        word-wrap: break-word;
     }
-    
+
     .box-5 {
         width: calc(100% - 30px);
-        margin: var(--mobile-spacing-md) var(--mobile-spacing-sm) 0;
+        margin: 0 var(--mobile-spacing-sm) var(--mobile-spacing-md);
         height: auto;
-        padding: var(--mobile-spacing-lg);
+        padding: 15px;
         border-radius: var(--mobile-border-radius);
         background: #f8f9fa;
         box-shadow: var(--mobile-shadow);
@@ -4593,67 +4695,30 @@ button {
         position: relative;
         left: 0;
         top: auto;
+        box-sizing: border-box;
     }
-    
-    .text-19, .text-1a {
+
+    .text-19,
+    .text-1a {
+        display: block;
         width: 100%;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.6;
-        height: auto;
-        color: #444;
-        margin-bottom: 0;
+        color: #333;
+        margin-bottom: 15px;
         position: relative;
         left: 0;
         top: auto;
+        white-space: normal;
+        word-wrap: break-word;
     }
-    
-    /* Power Values Method™ for Corporations title */
-    .text-18 {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        font-size: 28px !important;
-        line-height: 1.3 !important;
-        width: calc(100% - 30px) !important;
-        margin: var(--mobile-spacing-lg) var(--mobile-spacing-sm) var(--mobile-spacing-md) !important;
-        text-align: left !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        color: #000 !important;
-    }
-    
-    /* Power Values Method description box */
-    .box-5 {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: calc(100% - 30px) !important;
-        margin: 0 var(--mobile-spacing-sm) var(--mobile-spacing-md) !important;
-        padding: 15px !important;
-        box-sizing: border-box !important;
-    }
-    
-    .text-19, .text-1a {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-        width: 100% !important;
-        margin-bottom: 15px !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        color: #333 !important;
-    }
-    
+
     .section-4 {
         width: calc(100% - 30px);
         margin: var(--mobile-spacing-lg) var(--mobile-spacing-sm) 0;
         height: auto;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
+        display: block;
+        position: relative;
     }
     .section-4 .method-illustration {
         display: block !important;
@@ -4661,22 +4726,6 @@ button {
         max-width: 100% !important;
         height: auto !important;
         margin: var(--mobile-spacing-sm) 0 !important;
-    }
-    
-    /* Show section-4 images on mobile */
-    .section-4 .img-7,
-    .section-4 .img-8,
-    .section-4 .img-9,
-    .section-4 .pic-6,
-    .section-4 .img-a,
-    .section-4 .pic-5 {
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-        margin: var(--mobile-spacing-xs) 0 !important;
-        background: none !important;
-        visibility: visible !important;
-        position: relative;
     }
     
     .method-item {
@@ -4699,30 +4748,20 @@ button {
         padding: var(--mobile-spacing-xs) 0 !important;
         height: auto !important;
     }
-    .method-item:hover .method-title {
-        opacity: 1 !important;
-    }
-    .method-item:hover .method-hover-text {
-        opacity: 1 !important;
-    }
-    
+
     .method-title {
-        font-size: 32px;
+        font-size: 28px;
         line-height: 1.3;
-        white-space: normal;
         font-weight: 700;
         color: #000;
+        margin-bottom: var(--mobile-spacing-xs);
     }
-    
+
     .method-description {
         font-size: 17px;
         line-height: 1.6;
         color: #555;
-        margin-top: var(--mobile-spacing-xs);
-    }
-    
-    .img-7, .img-8, .img-9, .pic-6, .img-a, .pic-5 {
-        display: none;
+        margin: var(--mobile-spacing-xs) 0 0;
     }
     
     /* Leadership tools section */

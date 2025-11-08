@@ -32,7 +32,7 @@
             <div class="group">
                 <!-- Top-left dropdown menu -->
                 <div class="menu-dropdown">
-                    <button class="menu-trigger" onclick="toggleMenu(event)">
+                    <button class="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menuPanel">
                         <span class="menu-trigger-lines"><span></span><span></span><span></span></span>
                         <span class="menu-trigger-text">menu</span>
                     </button>
@@ -40,14 +40,14 @@
                         <div class="menu-panel-inner">
                             <div class="menu-topbar"></div>
                             <div class="menu-items">
-							<a href="#" class="menu-item accent">HOME</a>
-							<a href="https://powervalues.xyz/contact-us" class="menu-item">CONTACT</a>
-							<a href="https://powervalues.xyz/#row-MKIkPS0Szi" class="menu-item">ABOUT</a>
-							<a href="https://powervalues.xyz/quiz" class="menu-item">QUIZ</a>
-							<a href="https://power-values.github.io/book/" class="menu-item">BOOK</a>
-							<a href="https://power-values.github.io/training/" class="menu-item">TRAINING</a>
-                                <a href="#" class="menu-item">RESOURCES</a>
-                                <a href="#" class="menu-item underline">LOGIN</a>
+                                <a href="/" class="menu-item">HOME</a>
+                                <a href="https://powervalues.xyz/contact-us" class="menu-item">CONTACT</a>
+                                <a href="https://powervalues.xyz/#row-MKIkPS0Szi" class="menu-item">ABOUT</a>
+                                <a href="https://powervalues.xyz/quiz" class="menu-item">QUIZ</a>
+                                <a href="https://power-values.github.io/book/" class="menu-item">BOOK</a>
+                                <a href="https://power-values.github.io/training/" class="menu-item">TRAINING</a>
+                                <a href="#resources" class="menu-item">RESOURCES</a>
+                                <a href="https://powervalues.xyz/login" class="menu-item">LOGIN</a>
                             </div>
                         </div>
                     </div>
@@ -618,10 +618,8 @@
             function hideWelcomeOverlay() {
                 const overlay = document.getElementById('welcomeOverlay');
                 if (overlay) {
-                    overlay.style.animation = 'fadeOut 0.5s ease-out';
-                    setTimeout(function() {
-                        overlay.style.display = 'none';
-                    }, 500);
+                    overlay.style.display = 'none';
+                    overlay.setAttribute('aria-hidden', 'true');
                 }
             }
 
@@ -656,28 +654,89 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const welcomeImg = document.querySelector('.welcome-img');
                 const welcomeImg2 = document.querySelector('.welcome-img-2');
-                
+                const menuTrigger = document.querySelector('.menu-trigger');
+                const menuPanel = document.getElementById('menuPanel');
+
+                hideWelcomeOverlay();
+
                 if (welcomeImg) {
                     welcomeImg.addEventListener('click', handlePersonalDevelopment);
                 }
                 if (welcomeImg2) {
                     welcomeImg2.addEventListener('click', handleCorporateTraining);
                 }
+
+                if (menuPanel) {
+                    menuPanel.style.display = 'none';
+                    menuPanel.setAttribute('aria-hidden', 'true');
+                    menuPanel.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                    menuPanel.addEventListener('touchstart', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+                }
+
+                if (menuTrigger) {
+                    menuTrigger.addEventListener('click', toggleMenu);
+                    menuTrigger.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            toggleMenu(e);
+                        } else if (e.key === 'Escape') {
+                            closeMenu();
+                        }
+                    });
+                }
             });
 
             // Dropdown Menu Logic
             var lastSelectedDownloadTitle = null;
-            function toggleMenu(event) {
-                event.stopPropagation();
+
+            function setMenuState(isOpen) {
                 const panel = document.getElementById('menuPanel');
-                const isOpen = panel.classList.contains('open');
-                if (isOpen) {
-                    panel.classList.remove('open');
-                    panel.setAttribute('aria-hidden', 'true');
-                } else {
-                    panel.classList.add('open');
-                    panel.setAttribute('aria-hidden', 'false');
+                const trigger = document.querySelector('.menu-trigger');
+                if (!panel) {
+                    return;
                 }
+
+                if (isOpen) {
+                    panel.classList.add('open');
+                    panel.style.display = 'block';
+                    panel.setAttribute('aria-hidden', 'false');
+                    if (trigger) {
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                } else {
+                    panel.classList.remove('open');
+                    panel.style.display = 'none';
+                    panel.setAttribute('aria-hidden', 'true');
+                    if (trigger) {
+                        trigger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            }
+
+            function openMenu() {
+                setMenuState(true);
+            }
+
+            function closeMenu() {
+                setMenuState(false);
+            }
+
+            function toggleMenu(event) {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                const panel = document.getElementById('menuPanel');
+                if (!panel) {
+                    return;
+                }
+
+                const isCurrentlyOpen = panel.classList.contains('open');
+                setMenuState(!isCurrentlyOpen);
             }
 
             document.addEventListener('click', function(e) {
@@ -687,8 +746,24 @@
                 const clickInsidePanel = panel.contains(e.target);
                 const clickOnTrigger = trigger && trigger.contains(e.target);
                 if (!clickInsidePanel && !clickOnTrigger) {
-                    panel.classList.remove('open');
-                    panel.setAttribute('aria-hidden', 'true');
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener('touchstart', function(e) {
+                const panel = document.getElementById('menuPanel');
+                const trigger = document.querySelector('.menu-trigger');
+                if (!panel) return;
+                const tapInsidePanel = panel.contains(e.target);
+                const tapOnTrigger = trigger && trigger.contains(e.target);
+                if (!tapInsidePanel && !tapOnTrigger) {
+                    closeMenu();
+                }
+            }, { passive: true });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMenu();
                 }
             });
 
@@ -844,11 +919,35 @@
                     setHidden(ans, !isOpen);
                 });
 
+                // Create original-position anchors so we can restore on desktop
+                var faqAnchors = {};
+                document.querySelectorAll('.faq-answer').forEach(function(ans){
+                    var key = ans.getAttribute('data-faq-answer');
+                    if (!key) return;
+                    var anchor = document.createElement('div');
+                    anchor.id = 'faq-anchor-' + key;
+                    anchor.style.display = 'none';
+                    ans.parentNode.insertBefore(anchor, ans);
+                    faqAnchors[key] = anchor;
+                });
+
                 function toggleFaq(id) {
                     var answer = document.querySelector('.faq-answer[data-faq-answer="' + id + '"]');
                     var trigger = document.querySelector('[data-faq-id="' + id + '"]');
                     if (!answer || !trigger) return;
                     var isOpen = answer.classList.contains('open');
+                    var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+                    // Reposition answer based on device size
+                    if (isMobile) {
+                        // On mobile, place answer immediately after the clicked question
+                        trigger.insertAdjacentElement('afterend', answer);
+                    } else {
+                        // On desktop, restore to original position
+                        var anchor = faqAnchors[id];
+                        if (anchor && anchor.parentNode) {
+                            anchor.insertAdjacentElement('afterend', answer);
+                        }
+                    }
                     // Close all others
                     document.querySelectorAll('.faq-answer.open').forEach(function(el){
                         el.classList.remove('open');
