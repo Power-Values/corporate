@@ -1857,14 +1857,14 @@ button {
 }
 .wrapper-4 {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-wrap: nowrap;
     position: absolute;
     width: 164px;
-    height: 140px;
-    top: 266.333px;
-    left: 413px;
-    padding: 52px 0 52px 0;
+    height: auto;
+    bottom: 20px;
+    left: 20px;
+    padding: 0;
     z-index: 88;
 }
 .wrapper-5 {
@@ -1904,14 +1904,14 @@ button {
 }
 .box-7 {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-wrap: nowrap;
     position: absolute;
     width: 164px;
-    height: 140px;
-    top: 266.333px;
-    left: 805px;
-    padding: 52px 0 52px 0;
+    height: auto;
+    bottom: 20px;
+    left: 20px;
+    padding: 0;
     z-index: 97;
 }
 .section-8 {
